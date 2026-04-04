@@ -98,10 +98,11 @@
 
 //Day-4
 
-import React,{use, useEffect, useState, useReducer} from 'react'
-// import UseRef from './hooks/UseRef'
-import UseReducer from './hooks/UseReducer'
-const App = () => {
+// import React,{use, useEffect, useState, useReducer} from 'react'
+// // import UseRef from './hooks/UseRef'
+// import UseReducer from './hooks/UseReducer'
+// import UseCallback from './hooks/UseCallback'
+// const App = () => {
 //   const [a, setA] = useState<number>(0)
 
 //   useEffect(() => {
@@ -110,13 +111,36 @@ const App = () => {
 //   })
 
 
+//   return (
+//     <div>
+//       {/* <UseEffect/> */}
+//       {/* <UseRef/> */}
+//       {/* <UseReducer/> */}
+//       <UseCallback/>  
+//     </div>
+//   )
+// }
+
+// export default App
+
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Home from "./pages/Home"
+import About from "./pages/About"
+import Product from "./pages/Product"
+import Contact from "./pages/Contact"
+const App = () => {
   return (
-    <div>
-      {/* <UseEffect/> */}
-      {/* <UseRef/> */}
-      <UseReducer/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/about" element={<About/>} />
+        <Route path="/contact" element={<Contact/>} />
+        <Route path="/product" element={<Product/>} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
 export default App
+
