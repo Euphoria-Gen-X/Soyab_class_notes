@@ -1,80 +1,93 @@
-import React from 'react'
-//import type { User } from './types/User';
-// import MyButton,{Button,Card} from "./components/Button"//goes to the default in that file
-import Button from './components/Button';
-
+import React,{useState} from 'react'
 
 const App = () => {
-  // //javascript code here
-  // console.log("App component rendered");
-  // const a:string = "Hello Mern 73";
-  // let user1 :User = {username: "John", password: 123456};
-  // let user2 :User = {username: "Jane", password: 654321};
-  // let user3 :User = {username: "Jim", password: 123456,age: 20};
+  //state management with useState
+  const [chips, setChips] = useState<{quantity: number, price: number}>({
+    quantity: 0,
+    price: 100
+  }) 
+  const [coke, setCoke] = useState<{quantity: number, price: number}>({
+    quantity: 0,
+    price: 50
+  })
+  const [pastry, setPastry] = useState<{quantity: number, price: number}>({
+    quantity: 0,
+    price: 25
+  })
 
-  // const users:User[] = [
-  //   {username: "John", password: 123456},
-  //   {username: "Jane", password: 654321},
-  //   {username: "Jim", password: 123456,age: 20}
-  // ];
-  /* jsx code here 
-  return <p>Hello Mern 73</p>
-  */
-  //html code here
-  return (
-    <>
-    <Button lable={"Login"} bgCol={"red"}></Button>
-    <Button lable={"Register"} bgCol={"green"}></Button>
-    <Button lable={"Contact us"} bgCol={"red"}></Button>
+  const [items, setItems] = useState<{TotalItem:number, price:number}>(
+    {TotalItem: 0, price: 0}
+  ) //items is an array of strings that will hold the names of the items in the cart. setItems is a function that updates the state variable items. useState([]) initializes items to an empty array.
+  
+  //const [total, setTotal] = useState<number>(0)
 
-
-
-    {/*<Button/>   Auto self close */}
-    {/* {users && users.map((item,index) => (
-      <div key={index}>
-        <p>username: {item.username}</p>
-        <p>password: {item.password}</p>
-        <p>age: {item.age?item.age: "data not found"}</p>
+  //const [x, setX] = useState<number>(0) //setX is a function that updates the state variable x. useState(0) initializes x to 0.
+  //useState is a hook that allows you to add state to functional components.
+  //hooks are functions that let you use state and other React features without writing a class.
+  //let x: number = 5
+  const inc_chips=(): void => {
+    setChips({...chips, quantity: chips.quantity + 1, price: chips.price + 100})
+    setItems({...items, TotalItem: items.TotalItem + 1, price: items.price + 100})
+    console.log(chips)
+  }
+  const decr_chips=(): void => {
+    setChips({...chips, quantity: chips.quantity - 1, price: chips.price - 100})
+    setItems({...items, TotalItem: items.TotalItem - 1, price: items.price - 100})
+    console.log(chips)
+  }
+  const inc_coke=(): void => {
+    setCoke({...coke, quantity: coke.quantity + 1, price: coke.price + 50})
+    setItems({...items, TotalItem: items.TotalItem + 1, price: items.price + 50})
+    console.log(coke)
+  }
+  const decr_coke=(): void => {
+    setCoke({...coke, quantity: coke.quantity - 1, price: coke.price - 50})
+    setItems({...items, TotalItem: items.TotalItem - 1, price: items.price - 50})
+    console.log(coke)
+  }
+  const inc_pastry=(): void => {
+    setPastry({...pastry, quantity: pastry.quantity + 1, price: pastry.price + 25})
+    setItems({...items, TotalItem: items.TotalItem + 1, price: items.price + 25})
+    console.log(pastry)
+  }
+  const decr_pastry=(): void => {
+    setPastry({...pastry, quantity: pastry.quantity - 1, price: pastry.price - 25})
+    setItems({...items, TotalItem: items.TotalItem - 1, price: items.price - 25})
+    console.log(pastry)
+  }
+  return ( 
+    <div>
+      <div>
+        <h1> Add to Cart </h1>
       </div>
-    ))}{/*Each child in a list should have a unique "key" prop. because it is used to identify the item in the list*/}
-    {/*<table border={1}>
-      <thead>
-        <tr>
-          <th>username</th>
-          <th>password</th>
-          <th>age</th>
-        </tr>
-      </thead>
-    <tbody>
-        {users.map((item,index) => (
-          <tr key={index}>{/* index is important to identify the item in the list */}
-            {/*<td>{item.username}</td>
-            <td>{item.password}</td>
-            <td>{item.age?item.age: "data not found"}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table> */}
-    
+      <div>
+        <p>chips</p>
+        <button onClick={inc_chips}>+</button>
+        <input style={{ 
+          width: '50px', textAlign: 'center' }} 
+          type="text" 
+          value={chips.quantity} readOnly/>
+        <button onClick={decr_chips}>-</button>
+      </div>
+      <div>
+        <p>coke</p>
+        <button onClick={inc_coke}>+</button>
+        <input style={{ width: '50px', textAlign: 'center' }} type="text" value={coke.quantity} readOnly/>
+        <button onClick={decr_coke}>-</button>
+      </div>
+      <div>
+        <p>pastry</p>
+        <button onClick={inc_pastry}>+</button>
+        <input style={{ width: '50px', textAlign: 'center' }} type="text" value={pastry.quantity} readOnly/>
+        <button onClick={decr_pastry}>-</button>
+      </div>
+      <div>
+        <h2>Items in Cart: {items.TotalItem}</h2>
+        <h2>Total: {items.price}</h2>
+      </div>
 
-      {/* <h1>Hello Mern 73</h1>
-      <h2>Smart Queue</h2> */}
-      {/* Day 1: <p>{a}</p>
-      <p>username-1: {user1.username}</p>
-      <p>password-1: {user1.password}</p>
-      <p>username-2: {user2.username}</p>
-      <p>password-2: {user2.password}</p>
-      <p>username-3: {user3.username}</p>
-      <p>password-3: {user3.password}</p>
-      <p>age-3: {user3.age}</p>
-      <p>age-2: {user2.age?user2.age: "data"}</p> {/* age-2 is optional so it is not required to be filled
-     */}
-
-
-
-
-    </>
+    </div>
   )
 }
-//export the component so that it can be used in other files
-export default App;
+
+export default App
