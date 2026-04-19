@@ -1,2 +1,3 @@
-# SmartQueue
-SmartQueue – AI-Based Appointment &amp; Queue Management System
+# MERN
+Learning Full stack development using MERN along with related projects
+Hello
